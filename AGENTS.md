@@ -30,7 +30,10 @@ canonical copy rather than a staging area for Kyle's, and there's no `origin` to
 fetch from -- so `setup-repo.sh` doesn't apply to it and the guardrails below
 land differently. See [Changing this repo](#changing-this-repo).
 
-`/openedx/tutor` is reference material. Read it; don't work in it.
+`/openedx/tutor` is reference material. Read it; don't work in it. Its `origin`
+push URL is disabled like the others', even though it points at
+`overhangio/tutor` rather than one of Kyle's forks -- that's the only part of the
+setup it gets.
 
 To onboard another sibling, run `./setup-repo.sh <path-to-checkout>` from this
 repo. It creates your fork if needed and applies every guardrail below. Do that
@@ -83,6 +86,18 @@ prevent this, but don't rely on it; be explicit every time.
 
 Note the default branch differs per repo (`main` here, `master` in
 `openedx-platform`), so pass `--base` explicitly too.
+
+Then request Kyle's review, on every pull request, so it reaches him the way any
+other reviewer's request would rather than waiting to be noticed:
+
+```
+gh api --method POST repos/<owner>/<repo>/pulls/<N>/requested_reviewers \
+  -f 'reviewers[]=kdmccormick'
+```
+
+`gh pr edit --add-reviewer` is the obvious way to do this and it does not work
+here -- it fails on the same sunset Projects-classic GraphQL as
+`gh pr edit --body-file`, printing an error and adding no one.
 
 ### Pull request description
 
