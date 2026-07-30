@@ -23,6 +23,12 @@ as a second remote.
 |---|---|---|---|---|
 | `/openedx/openedx-template-site` | `kdmccormick/openedx-template-site` | `rokamelyk/openedx-template-site` | `main` | `feanil/minimal-edx-platform` |
 | `/openedx/openedx-platform` | `kdmccormick/openedx-platform` | `rokamelyk/openedx-platform` | `master` | `openedx/openedx-platform` |
+| `/openedx/rokamelyk` | -- | `rokamelyk/rokamelyk` | `main` | -- |
+
+This repo is the odd one out. It isn't a fork, `rokamelyk/rokamelyk` is the
+canonical copy rather than a staging area for Kyle's, and there's no `origin` to
+fetch from -- so `setup-repo.sh` doesn't apply to it and the guardrails below
+land differently. See [Changing this repo](#changing-this-repo).
 
 `/openedx/tutor` is reference material. Read it; don't work in it.
 
@@ -110,6 +116,35 @@ success. To edit a description after the fact:
 jq -Rs '{body: .}' body.md | gh api --method PATCH repos/kdmccormick/<repo>/pulls/<N> --input -
 ```
 
+## Changing this repo
+
+`main` here is the real thing, not a mirror, and you can push to it. That makes it
+the one branch in this whole setup where a stray `git push` would land in the
+canonical copy with nobody having read it. So: branch, push to `aifork`, and open
+a pull request against this same repo.
+
+```
+gh pr create --repo rokamelyk/rokamelyk \
+  --base main --head ai/<topic> --title "..." --body-file "..."
+```
+
+Same three-section description as above. Then turn auto-merge on, so that
+approving is the only step left for Kyle:
+
+```
+gh pr merge <N> --repo rokamelyk/rokamelyk --auto --squash
+```
+
+Do this on every pull request here, right after opening it.
+
+Auto-merge is not a way around review. A ruleset on `main` requires one approval
+and auto-merge waits for it, so what this changes is that Kyle doesn't have to
+come back a second time to press the button. Merging by hand stays Kyle's call --
+the fact that you *could* is not a reason to.
+
+With no `origin` in this checkout, `main` syncs from your fork instead:
+`git fetch aifork && git checkout main && git reset --hard aifork/main`.
+
 ## Scope of GitHub access
 
 You have the `rokamelyk` account's full access, restricted by this rule rather
@@ -123,7 +158,8 @@ don't delete anything on GitHub.
 The credentials are broadly scoped (`repo`, `admin:org`, `delete_repo`, `workflow`,
 `gist`) and nothing technical stops you from breaking that rule, so it's on you to
 hold the line. If you think you need to reach outside that scope, ask Kyle rather
-than doing it. Kyle merges; you have no write access to `origin`, so never try.
+than doing it. Kyle merges. Everywhere but this repo you have no write access to
+`origin`, so never try; here you do, and holding off is on you.
 
 Reading is unrestricted. Fetch, clone, and read anything public.
 
@@ -155,11 +191,11 @@ fire automatically.
 * Splitting this repo out of `openedx-template-site` broke the old rule that those
   doc updates go on the working branch -- `docs/code-style.md` now lives in a
   different repo than the code under review, so that's no longer possible. Instead:
-  branch here, open a pull request against `kdmccormick/rokamelyk`, and link it
-  from the **Details** section of the code pull request. Kyle still sees the
+  open a second pull request per [Changing this repo](#changing-this-repo) and link
+  it from the **Details** section of the code pull request. Kyle still sees the
   learning next to the code that produced it, without either pull request blocking
-  the other. Never commit straight to this repo's default branch to dodge the extra
-  pull request.
+  the other. Committing straight to `main` to dodge the extra pull request is not
+  the shortcut it looks like.
 * Say your piece on GitHub, not twice. Kyle reads the pull request, so report back
   in chat with just "Responded to review on \<links\>" / "Nothing to respond to" /
   "Blocked by questions on \<links\>". Don't re-summarize what the comments say.
