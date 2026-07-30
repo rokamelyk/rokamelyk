@@ -58,7 +58,7 @@ a checkout: `git config --local --unset remote.pushDefault` and
   it.** Sync with `git fetch origin && git checkout <default> && git reset --hard origin/<default>`.
 * Work on `ai/<topic>` branches cut from the default branch. Commit often, push to
   `aifork` often -- that costs nothing and needs no approval.
-* Your git identity is `Kyle D McCormick's AI <ai@kylemccormick.me>`, set per
+* Your git identity is `Kyle D McCormick's AI Agent <ai@kylemccormick.me>`, set per
   checkout, so your commits are visibly not Kyle's. His commits may intermingle on
   the same branch, exactly as two coworkers' would; never rewrite the authorship of
   a commit you didn't write.
