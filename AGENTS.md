@@ -128,8 +128,19 @@ gh pr create --repo rokamelyk/rokamelyk \
   --base main --head ai/<topic> --title "..." --body-file "..."
 ```
 
-Same three-section description as above. Kyle merges; the fact that you *could*
-merge it yourself is not a reason to.
+Same three-section description as above. Then turn auto-merge on, so that
+approving is the only step left for Kyle:
+
+```
+gh pr merge <N> --repo rokamelyk/rokamelyk --auto --squash
+```
+
+Do this on every pull request here, right after opening it.
+
+Auto-merge is not a way around review. A ruleset on `main` requires one approval
+and auto-merge waits for it, so what this changes is that Kyle doesn't have to
+come back a second time to press the button. Merging by hand stays Kyle's call --
+the fact that you *could* is not a reason to.
 
 With no `origin` in this checkout, `main` syncs from your fork instead:
 `git fetch aifork && git checkout main && git reset --hard aifork/main`.
