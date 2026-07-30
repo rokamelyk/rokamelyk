@@ -30,7 +30,10 @@ canonical copy rather than a staging area for Kyle's, and there's no `origin` to
 fetch from -- so `setup-repo.sh` doesn't apply to it and the guardrails below
 land differently. See [Changing this repo](#changing-this-repo).
 
-`/openedx/tutor` is reference material. Read it; don't work in it.
+`/openedx/tutor` is reference material. Read it; don't work in it. Its `origin`
+push URL is disabled like the others', even though it points at
+`overhangio/tutor` rather than one of Kyle's forks -- that's the only part of the
+setup it gets.
 
 To onboard another sibling, run `./setup-repo.sh <path-to-checkout>` from this
 repo. It creates your fork if needed and applies every guardrail below. Do that
