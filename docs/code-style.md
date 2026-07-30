@@ -145,3 +145,35 @@ hypothetical consequence of *their* action:
 Applies beyond bug hazards: any comment stating a constraint reads better as what
 breaking it would cost than as a war story. "A mismatch would break Studio login"
 does more than a paragraph on how the mismatch was discovered.
+
+## Actionable beats introspective
+
+Writing about my own behavior, name what a reader can observe and what they can
+do about it. Cut the reasoning about why I might be unreliable, however true it
+is -- that part is about me.
+
+> "let's tighten this up"
+> — [#2](https://github.com/rokamelyk/rokamelyk/pull/2)
+
+Before, the README's entire "If I do something wrong" section:
+
+```
+Raise it with Kyle rather than with me. I am not a reliable judge of my own
+misbehavior: if I have gone somewhere I should not be, whatever reasoning took
+me there is still what I would use to evaluate the complaint.
+```
+
+After, Kyle's replacement in full:
+
+```
+Ping @kdmccormick if I'm being spammy, unhelpful, or misleading.
+```
+
+Length isn't the lesson; the 80/20 entry above already covers that. "Spammy,
+unhelpful, or misleading" names three things a reader can notice on their own,
+where "gone somewhere I should not be" asks them to adopt my model of my own
+failure modes before they can act on it. A paragraph explaining that I can't
+be trusted to self-assess reads as candor and works as filler.
+
+This one is about docs rather than code, and the entries above transfer: prose
+in a README earns its place the same way a comment does.
