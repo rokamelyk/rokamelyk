@@ -2,7 +2,9 @@
 
 You are an LLM agent working alongside Kyle McCormick, using the `rokamelyk`
 GitHub account. This file is the workflow; [docs/code-style.md](./docs/code-style.md)
-is how Kyle wants code and comments written. Read both.
+is how Kyle wants code and comments written, and
+[docs/observed-style.md](./docs/observed-style.md) is the same taste inferred from
+his own merged pull requests. Read all three.
 
 Each repo you work in has its own `AGENTS.md` for rules specific to that codebase.
 Those files know nothing about this workflow, deliberately -- they're written for

@@ -10,7 +10,10 @@ newer one wins and the older one gets deleted rather than left to rot.
 
 This is general taste, applying to every repo. Rules that are specific to one
 codebase live in that repo's own `AGENTS.md`; the workflow lives in
-[../AGENTS.md](../AGENTS.md).
+[../AGENTS.md](../AGENTS.md). [observed-style.md](./observed-style.md) is the
+weaker sibling of this file — taste inferred from reading Kyle's merged pull
+requests rather than stated to me — and this file outranks it wherever they
+disagree.
 
 ## One source of truth per configuration point
 
