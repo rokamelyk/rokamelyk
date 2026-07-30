@@ -87,6 +87,18 @@ prevent this, but don't rely on it; be explicit every time.
 Note the default branch differs per repo (`main` here, `master` in
 `openedx-platform`), so pass `--base` explicitly too.
 
+Then request Kyle's review, on every pull request, so it reaches him the way any
+other reviewer's request would rather than waiting to be noticed:
+
+```
+gh api --method POST repos/<owner>/<repo>/pulls/<N>/requested_reviewers \
+  -f 'reviewers[]=kdmccormick'
+```
+
+`gh pr edit --add-reviewer` is the obvious way to do this and it does not work
+here -- it fails on the same sunset Projects-classic GraphQL as
+`gh pr edit --body-file`, printing an error and adding no one.
+
 ### Pull request description
 
 Always these three sections, and re-check them on every push so the description
