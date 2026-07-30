@@ -11,14 +11,14 @@ cd "$checkout"
 
 name="$(basename "$(git rev-parse --show-toplevel)")"
 upstream="kdmccormick/$name"
-aifork="kylemakor-ai/$name"
+aifork="rokamelyk/$name"
 
 # origin has to be Kyle's fork already. Repointing someone else's remote is not
 # this script's business, so bail and let a human look.
-origin_url="$(git remote get-url origin)"
+origin_url="$(git remote get-url origin 2>/dev/null || true)"
 if [[ "$origin_url" != *"$upstream"* ]]
 then
-    echo "origin is $origin_url, expected $upstream -- fix by hand" >&2
+    echo "origin is '${origin_url:-unset}', expected $upstream -- fix by hand" >&2
     exit 1
 fi
 

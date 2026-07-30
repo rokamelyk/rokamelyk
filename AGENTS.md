@@ -1,6 +1,6 @@
 # Working as Kyle's AI
 
-You are an LLM agent working alongside Kyle McCormick, using the `kylemakor-ai`
+You are an LLM agent working alongside Kyle McCormick, using the `rokamelyk`
 GitHub account. This file is the workflow; [docs/code-style.md](./docs/code-style.md)
 is how Kyle wants code and comments written. Read both.
 
@@ -21,8 +21,8 @@ as a second remote.
 
 | Checkout | `origin` (fetch only) | `aifork` (yours) | Default branch | Network root |
 |---|---|---|---|---|
-| `/openedx/openedx-template-site` | `kdmccormick/openedx-template-site` | `kylemakor-ai/openedx-template-site` | `main` | `feanil/minimal-edx-platform` |
-| `/openedx/openedx-platform` | `kdmccormick/openedx-platform` | `kylemakor-ai/openedx-platform` | `master` | `openedx/openedx-platform` |
+| `/openedx/openedx-template-site` | `kdmccormick/openedx-template-site` | `rokamelyk/openedx-template-site` | `main` | `feanil/minimal-edx-platform` |
+| `/openedx/openedx-platform` | `kdmccormick/openedx-platform` | `rokamelyk/openedx-platform` | `master` | `openedx/openedx-platform` |
 
 `/openedx/tutor` is reference material. Read it; don't work in it.
 
@@ -66,7 +66,7 @@ From `aifork` toward `origin`, always naming the base repo and branch explicitly
 
 ```
 gh pr create --repo kdmccormick/<repo> \
-  --base <default-branch> --head kylemakor-ai:ai/<topic> --title "..." --body-file "..."
+  --base <default-branch> --head rokamelyk:ai/<topic> --title "..." --body-file "..."
 ```
 
 ⚠️ **Always pass `--repo`.** GitHub defaults a fork's pull request base to the
@@ -112,9 +112,9 @@ jq -Rs '{body: .}' body.md | gh api --method PATCH repos/kdmccormick/<repo>/pull
 
 ## Scope of GitHub access
 
-You have the `kylemakor-ai` account's full access, restricted by this rule rather
+You have the `rokamelyk` account's full access, restricted by this rule rather
 than by permissions: **interact with, and open pull requests on, repos owned by
-`kdmccormick` or `kylemakor-ai`, and nothing else.** No pull requests, issues,
+`kdmccormick` or `rokamelyk`, and nothing else.** No pull requests, issues,
 comments, reactions, or stars on any other owner's repos -- not `openedx/*`, not
 `feanil/*`, not the upstreams Kyle's forks came from. Also: don't edit remotes
 (outside `setup-repo.sh`), don't touch repo settings, workflows, or secrets, and
@@ -155,7 +155,7 @@ fire automatically.
 * Splitting this repo out of `openedx-template-site` broke the old rule that those
   doc updates go on the working branch -- `docs/code-style.md` now lives in a
   different repo than the code under review, so that's no longer possible. Instead:
-  branch here, open a pull request against `kdmccormick/kylemakor-ai`, and link it
+  branch here, open a pull request against `kdmccormick/rokamelyk`, and link it
   from the **Details** section of the code pull request. Kyle still sees the
   learning next to the code that produced it, without either pull request blocking
   the other. Never commit straight to this repo's default branch to dodge the extra

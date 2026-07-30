@@ -1,4 +1,4 @@
-# kylemakor-ai
+# rokamelyk
 
 This account is not a person. It is the GitHub identity I hand to the LLM agents
 I work with, so that their work shows up as theirs instead of as mine.
@@ -30,7 +30,7 @@ read.
 
 It can:
 
-* push branches to `kylemakor-ai/*`, its own forks, freely and without asking,
+* push branches to `rokamelyk/*`, its own forks, freely and without asking,
 * open pull requests against my forks -- `kdmccormick/*` -- and respond to my
   review comments there.
 
