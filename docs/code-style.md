@@ -10,7 +10,10 @@ newer one wins and the older one gets deleted rather than left to rot.
 
 This is general taste, applying to every repo. Rules that are specific to one
 codebase live in that repo's own `AGENTS.md`; the workflow lives in
-[../AGENTS.md](../AGENTS.md).
+[../AGENTS.md](../AGENTS.md). [observed-style.md](./observed-style.md) is the
+weaker sibling of this file — taste inferred from reading Kyle's merged pull
+requests rather than stated to me — and this file outranks it wherever they
+disagree.
 
 ## One source of truth per configuration point
 
@@ -145,6 +148,30 @@ hypothetical consequence of *their* action:
 Applies beyond bug hazards: any comment stating a constraint reads better as what
 breaking it would cost than as a war story. "A mismatch would break Studio login"
 does more than a paragraph on how the mismatch was discovered.
+
+## Don't promote an observation into a law
+
+When writing down how someone works, match the strength of the claim to the
+strength of the evidence. One instance is a hint. A pattern across a dozen PRs is
+a convention. Writing both as rules makes the doc confidently wrong about half of
+what it says, and there's no way for a reader to tell which half.
+
+> "you've written this down as if it's black and white edicts. e.g., `Decisions
+> get written down with the losing arguments intact` because you saw I did that
+> once. try to go more for vibes, and less for hard-and-fast rules."
+> — [#5](https://github.com/rokamelyk/rokamelyk/pull/5)
+
+The failure isn't the heading's wording, it's the promotion: I saw one ADR argue
+both sides, liked it, and wrote it up as the way ADRs get done. Hedging the
+sentence wouldn't have fixed that — the entry needed to say it came from one ADR,
+so a reader can weigh it themselves.
+
+Practically, in a descriptive doc: say how much of the sample an entry rests on,
+prefer describing what he did over prescribing what to do, and keep a section for
+where he's *inconsistent*, because that's the part that stops me over-fitting.
+
+This is about docs describing taste. A rule Kyle has actually stated — everything
+else in this file — should be written as the rule it is.
 
 ## Actionable beats introspective
 
