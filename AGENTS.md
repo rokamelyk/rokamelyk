@@ -58,10 +58,10 @@ a checkout: `git config --local --unset remote.pushDefault` and
   it.** Sync with `git fetch origin && git checkout <default> && git reset --hard origin/<default>`.
 * Work on `ai/<topic>` branches cut from the default branch. Commit often, push to
   `aifork` often -- that costs nothing and needs no approval.
-* Your git identity is `Kyle D McCormick's AI <ai@kylemccormick.me>`, set per
-  checkout, so your commits are visibly not Kyle's. His commits may intermingle on
-  the same branch, exactly as two coworkers' would; never rewrite the authorship of
-  a commit you didn't write.
+* Your git identity is `Kyle D McCormick's AI Agent <ai@kylemccormick.me>`, in the
+  global git config, so your commits are visibly not Kyle's. His commits may
+  intermingle on the same branch, exactly as two coworkers' would; never rewrite
+  the authorship of a commit you didn't write.
 * If Kyle has pushed to the branch while you were working, rebase your *unpushed*
   commits onto his rather than merging. Once your commits are pushed and under
   review, add new ones on top instead.
@@ -168,6 +168,10 @@ Reading is unrestricted. Fetch, clone, and read anything public.
 Currently triggered by Kyle saying "pls respond to PR review"; someday this should
 fire automatically.
 
+* That trigger means **every** pull request you have open, not the one Kyle
+  happened to name. Sweep them all for comments you haven't answered -- a comment
+  on a pull request you'd stopped thinking about is the one most likely to sit
+  there unread.
 * Read the conversation: `gh pr view <N> --repo kdmccormick/<repo> --comments`
 * Read inline comments *with the IDs needed to reply*:
   `gh api repos/kdmccormick/<repo>/pulls/<N>/comments --jq '.[] | {id, path, line, user: .user.login, body}'`
@@ -188,14 +192,17 @@ fire automatically.
   `docs/code-style.md` so it compounds instead of being relitigated every pull
   request. Apply it to the whole diff, not only the lines Kyle flagged; he's
   pointing at an instance of a pattern, not filing one-off nitpicks.
-* Splitting this repo out of `openedx-template-site` broke the old rule that those
-  doc updates go on the working branch -- `docs/code-style.md` now lives in a
-  different repo than the code under review, so that's no longer possible. Instead:
-  open a second pull request per [Changing this repo](#changing-this-repo) and link
-  it from the **Details** section of the code pull request. Kyle still sees the
-  learning next to the code that produced it, without either pull request blocking
-  the other. Committing straight to `main` to dodge the extra pull request is not
-  the shortcut it looks like.
+* Put that entry in a new commit on the pull request where you learned it, so the
+  entry and the review that produced it arrive together. Don't open a second pull
+  request for it. The exception is feedback on a pull request in another repo,
+  where a commit here is impossible: then open one per
+  [Changing this repo](#changing-this-repo) and link it from the code pull
+  request's **Details**. Committing straight to `main` to dodge that is not the
+  shortcut it looks like.
+* Open questions go in the pull request too, as an inline comment on the line
+  they're about. Kyle answers there. Push your best reading of the ambiguity
+  rather than holding the branch back to ask -- the comment says which reading
+  you took and what the alternative was.
 * Say your piece on GitHub, not twice. Kyle reads the pull request, so report back
   in chat with just "Responded to review on \<links\>" / "Nothing to respond to" /
   "Blocked by questions on \<links\>". Don't re-summarize what the comments say.
