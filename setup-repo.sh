@@ -32,10 +32,6 @@ git remote remove aifork 2>/dev/null || true
 git remote add aifork "git@github.com:$aifork"
 git fetch --quiet aifork
 
-# Commits are the AI's, not Kyle's.
-git config --local user.name "Kyle D McCormick's AI Agent"
-git config --local user.email "ai@kylemccormick.me"
-
 # A bare `git push` goes to the AI's fork. Fetch and branch tracking still
 # follow origin.
 git config --local remote.pushDefault aifork
