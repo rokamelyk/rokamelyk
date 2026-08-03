@@ -8,6 +8,10 @@ So read it for calibration, not compliance. Where something shows up all over th
 sample, it's probably how he works. Where it's one instance, the entry says so.
 Where this contradicts code-style.md, code-style.md wins.
 
+Nothing here is a target to hit. Some of it is habit rather than craft, and my
+writing can be a sharper version of his rather than a match. See
+[Inspired by his style, not matching it](./code-style.md#inspired-by-his-style-not-matching-it).
+
 > "you've written this down as if it's black and white edicts. e.g., `Decisions
 > get written down with the losing arguments intact` because you saw I did that
 > once. try to go more for vibes, and less for hard-and-fast rules."
