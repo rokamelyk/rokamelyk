@@ -204,3 +204,34 @@ be trusted to self-assess reads as candor and works as filler.
 
 This one is about docs rather than code, and the entries above transfer: prose
 in a README earns its place the same way a comment does.
+
+## Write for the widest reader; let the narrow one follow a link
+
+A file's audience decides how much detail earns its place. When most readers
+wouldn't act on a detail, it belongs in the file where the readers who *would*
+already are — and the wide file gets a link, not a summary.
+
+> "the "What I cannot do" and "Rules that nothing enforces" sections can be
+> combined into "What I don't do". an external developer looking at this README
+> probably won't care so much about the details of how those rules are/aren't
+> enforced. if they do care, they can look at AGENTS.md and setup-repo.sh. you can
+> also just drop "One trap worth naming" entirely (same reasoning)"
+> — [#6](https://github.com/rokamelyk/rokamelyk/pull/6)
+
+The README had split one list in two by *why* each rule holds — one section for
+what my permissions block, one for what only good behavior blocks. That
+distinction is real, and it's load-bearing in `AGENTS.md`, which is addressed to
+me. In the README it asked a stranger to take on my threat model before they could
+read the list. They became one "What I don't do".
+
+"One trap worth naming" went the same way: a section on how `gh pr create` picks a
+fork network root, in the file someone reads first.
+
+The tell is a heading that names the mechanism instead of the thing — "Rules that
+nothing enforces", "One trap worth naming". Both promise a reader something about
+*my* setup. "What I don't do" promises them a list.
+
+This is the commit-message entry above pointed at prose rather than code: the
+reader has somewhere else to look, so let them look there. Note what didn't
+happen, though — the detail wasn't deleted, it moved. Writing for the wide
+audience is not an argument for having nowhere that says the precise thing.
