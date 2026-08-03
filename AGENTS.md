@@ -27,11 +27,23 @@ grouped by the GitHub org they belong to.
 | `~/rokamelyk` | `rokamelyk` | `main` | This repo: your rules, guidelines, and memory. Public. |
 | `~/rokamelyk-private` | `rokamelyk` | `main` | The same, for things that shouldn't be public. See [The private repo](#the-private-repo). |
 | `~/openedx/openedx-template-site` | `kdmccormick`, `rokamelyk` | `main` | Primary work. Kyle's fork of `feanil/minimal-edx-platform`. |
-| `~/openedx/openedx-platform` | `kdmccormick`, `openedx`, `rokamelyk` | `master` | Work, and reference for the above. Huge. |
+| `~/openedx/openedx-platform` | `kdmccormick`, `openedx`, `rokamelyk` | `master`, but see below | Work, and reference for the above. Huge. |
 | `~/openedx/openedx-app-android` | `openedx` | `main` | Reference only. Upstream directly, not a fork of Kyle's. |
 | `~/overhangio/tutor` | `overhangio` | `main` | Reference only. Read it; don't work in it. |
 
 `~/openedx/README.md` and `~/overhangio/README.md` say what each group is.
+
+### openedx-platform work happens off `master`
+
+`openedx-platform`'s default branch is `master`, but the branch that matters is
+`kdmccormick/openedx-template-site` -- it carries the platform changes that
+`openedx-template-site` needs, and it's what that site actually runs against.
+Branch from it, not from `master`, for anything template-site-related, and expect
+to keep rebasing it as `master` moves.
+
+The hope is to land its changes on `master` so that `openedx-template-site` works
+against any modern platform branch, at which point this stops being true. Until
+then, a `master`-based branch would look right and not work.
 
 To onboard another fork of Kyle's, run `./setup-repo.sh <path-to-checkout>` from
 this repo. It creates your fork if needed and applies every guardrail below. Do
@@ -266,13 +278,21 @@ The server is replaceable and private; a quiet mistake is worse than a loud one.
 Currently triggered by Kyle saying "pls respond to PR review"; someday this should
 fire automatically.
 
-* That trigger means **every** pull request you have open, not the one Kyle
-  happened to name. Sweep them all for comments you haven't answered -- a comment
-  on a pull request you'd stopped thinking about is the one most likely to sit
-  there unread.
-* Read the conversation: `gh pr view <N> --repo kdmccormick/<repo> --comments`
-* Read inline comments *with the IDs needed to reply*:
-  `gh api repos/kdmccormick/<repo>/pulls/<N>/comments --jq '.[] | {id, path, line, user: .user.login, body}'`
+* When Kyle names the pull request, or tells you which comments are outstanding,
+  take him at his word and go straight there. He knows what he left.
+* Sweep **every** pull request you have open when he *hasn't* been specific -- a
+  comment on a pull request you'd stopped thinking about is the one most likely to
+  sit there unread.
+* `gh pr view <N> --comments` is the obvious way to read the conversation and it
+  does not work here: it fails on the same sunset Projects-classic GraphQL as the
+  two `gh pr edit` cases above. Use REST, and read all three places a comment can
+  hide:
+  * Top level: `gh api repos/<owner>/<repo>/issues/<N>/comments --jq '.[] | {id, user: .user.login, body}'`
+  * Review bodies, easy to forget and where a "changes requested" usually says
+    what it wants:
+    `gh api repos/<owner>/<repo>/pulls/<N>/reviews --jq '.[] | {user: .user.login, state, body}'`
+  * Inline, *with the IDs needed to reply*:
+    `gh api repos/<owner>/<repo>/pulls/<N>/comments --jq '.[] | {id, path, line, user: .user.login, body}'`
 * Reply in-thread:
   `gh api --method POST repos/kdmccormick/<repo>/pulls/<N>/comments/<COMMENT_ID>/replies -f body='...'`
 * Reply at top level: `gh pr comment <N> --repo kdmccormick/<repo> --body '...'`
