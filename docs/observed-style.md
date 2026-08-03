@@ -1,15 +1,12 @@
 # Observed style
 
-What Kyle's code and writing *feel* like, read out of his merged pull requests
-in the `openedx` org. [code-style.md](./code-style.md) is the rules file — things
-he has actually told me, which I follow. This file is not rules. It's
-impressions, and impressions off a sample of fifteen PRs are worth what they're
-worth.
+What Kyle's code and writing feel like, read out of his merged pull requests in the
+`openedx` org. [code-style.md](./code-style.md) is the rules file, things he has
+actually told me. This file is impressions, off a sample of fifteen PRs.
 
 So read it for calibration, not compliance. Where something shows up all over the
-sample, it's probably how he works. Where it's one instance, the entry says so,
-and one instance is a hint rather than a convention. Where this contradicts
-code-style.md, code-style.md wins.
+sample, it's probably how he works. Where it's one instance, the entry says so.
+Where this contradicts code-style.md, code-style.md wins.
 
 > "you've written this down as if it's black and white edicts. e.g., `Decisions
 > get written down with the losing arguments intact` because you saw I did that
